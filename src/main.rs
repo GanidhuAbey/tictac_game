@@ -54,7 +54,7 @@ fn display_board(display_board: &Vec<String>) {
 
 fn manipulate_board(game_board: &mut Vec<String>) {
     let mut invalid_input = true;
-    let mut place: u32 = 0;
+    let mut place: i32 = 0;
 
     while invalid_input {
         let mut p_input = String::new();
@@ -62,13 +62,14 @@ fn manipulate_board(game_board: &mut Vec<String>) {
         io::stdin().read_line(&mut p_input)
             .expect("Failed to read line");
 
+
         place = p_input.trim().parse()
             .expect("you entered invalid input...");
         place = place - 1;
 
-        if game_board[place as usize] == " ".to_string() {
+        if place > 0 && place < 9 && game_board[place as usize] == " ".to_string() {
             invalid_input = false;
-        } 
+        }
     }
     game_board[place as usize] = "O".to_string();
 }
