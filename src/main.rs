@@ -11,7 +11,7 @@ fn main() {
     let mut game_board = vec![st.clone(),st.clone(),st.clone(), st.clone(),st.clone(),st.clone(), st.clone(),st.clone(),st.clone()];
 
     let mut game = true;
-    let mut num_board = Vec::new();
+    let mut num_board: Vec<u32>;
 
     display_board(&game_board);
     while game {
@@ -67,7 +67,7 @@ fn manipulate_board(game_board: &mut Vec<String>) {
             .expect("you entered invalid input...");
         place = place - 1;
 
-        if place > 0 && place < 9 && game_board[place as usize] == " ".to_string() {
+        if place >= 0 && place < 9 && game_board[place as usize] == " ".to_string() {
             invalid_input = false;
         }
     }

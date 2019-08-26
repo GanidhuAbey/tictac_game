@@ -11,9 +11,6 @@
 //Ai decision tree program for tic tac toe, this program will only make moves for the computer
 //and thus should only be used on computer turn.
 
-fn main() {
-    //println!("{:?}", next_move([2,2,1, 2,1,0, 0,0,0].to_vec(), 1));
-}
 //Function to organize all the other functions and return only what the user wants
 //	Parameters - (root) : current game board
 //Returns - (Vec<u32>) : game board with next best move 
@@ -193,7 +190,7 @@ pub fn win_loss(board: &Vec<u32>) -> i32 {
 //function used by win loss to calculate win
 fn check_board(board: &Vec<u32>, player: u32) -> i32 {
 	//println!("hello");
-	let mut win_conditions = vec![[player,0,0, player,0,0, player,0,0],
+	let win_conditions = vec![[player,0,0, player,0,0, player,0,0],
 								[0,player,0, 0,player,0, 0,player,0],
 								[0,0,player, 0,0,player, 0,0,player],
 								[player,player,player, 0,0,0, 0,0,0],
@@ -202,7 +199,7 @@ fn check_board(board: &Vec<u32>, player: u32) -> i32 {
 								[player,0,0, 0,player,0, 0,0,player],
 								[0,0,player, 0,player,0, player,0,0]];
 	
-	let mut copy_conditions = vec![[player,0,0, player,0,0, player,0,0],
+	let copy_conditions = vec![[player,0,0, player,0,0, player,0,0],
 								[0,player,0, 0,player,0, 0,player,0],
 								[0,0,player, 0,0,player, 0,0,player],
 								[player,player,player, 0,0,0, 0,0,0],
