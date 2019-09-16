@@ -1,12 +1,8 @@
-//TODO: this program currently uses the int "1" and int "2" to indicate whether the computer
-//should win in one move or whether to block the opponent from winning, however using the ints
-//to do this creates the chance that a one will appear in a scenario that does not mean instant win
+//Currently the loss is valued far to low for the computer such that when it sees a move that will inevitable lead to a loss but overall
+//has more wins then the other moves then it will simply choose that move and end up losing.
 
-//test case that shows the above problem in action: [2,2,1, 2,1,0, 0,0,0]
-
-//UPDATE: Problem has been fixed for now
-
-//when the game sees no more win conditions it can pick the same move it already picked
+//To fix this I need to reprogram the game such that computer picks the moves with the least losses rather than just having all of them
+//cancel out into one move.
 
 //Ai decision tree program for tic tac toe, this program will only make moves for the computer
 //and thus should only be used on computer turn.
