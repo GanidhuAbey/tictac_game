@@ -3,10 +3,11 @@ A desicion tree algorithm that uses a recursive function to add up the win/loss 
 
 # How To Play
 Once the game is run, you will be greeted to the terminal with output similar to this:
+
 ------------------------------------------------------
-  | | | |
-  | | | |
-  | | | |
+  | | | | \
+  | | | | \
+  | | | | \
   
 please enter a number between 1 and 9 to place a move
 
