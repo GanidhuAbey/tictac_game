@@ -7,7 +7,7 @@ Once the game is run, you will be greeted to the terminal with output similar to
 ------------------------------------------------------
   | | | | \
   | | | | \
-  | | | | \
+  | | | | 
   
 please enter a number between 1 and 9 to place a move
 
