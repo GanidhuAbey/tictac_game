@@ -1,9 +1,3 @@
-//Currently the loss is valued far to low for the computer such that when it sees a move that will inevitable lead to a loss but overall
-//has more wins then the other moves then it will simply choose that move and end up losing.
-
-//To fix this I need to reprogram the game such that computer picks the moves with the least losses rather than just having all of them
-//cancel out into one move.
-
 //Ai decision tree program for tic tac toe, this program will only make moves for the computer
 //and thus should only be used on computer turn.
 
