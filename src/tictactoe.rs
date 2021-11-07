@@ -1,5 +1,5 @@
 const COMPUTER: u32 = 1;
-const PLAYER: u32 = 2;
+//const PLAYER: u32 = 2; <-- just don't ever end up using this
 
 const UNASSIGNED: i32 = 4; //indicating that this value is more or less undefined in terms of our program
 
@@ -124,7 +124,7 @@ fn root_board(root: &Vec<u32>, mut turn: u32) -> Vec<i32> {
 //	Parameters - (node) : one of the children of the current game board
 //			   - (turn) : current turn
 //Returns - (i32) : a point value of that move (1 means instant win)
-fn node_solve(node: Vec<u32>, mut turn: u32, evaluate_player: u32) -> i32 {
+fn node_solve(node: Vec<u32>, turn: u32, evaluate_player: u32) -> i32 {
 	let mut current_value: i32 = UNASSIGNED; //not sure if rust is okay with type casting between i32 and u32...
 
     let end_game = win_loss(&node, evaluate_player);
@@ -132,20 +132,19 @@ fn node_solve(node: Vec<u32>, mut turn: u32, evaluate_player: u32) -> i32 {
 		return end_game;
 	}
 
-    let mut sum = 0;
 
     let childs = all_moves(&node, turn);
 
     for child in childs.iter() {
         let found_value = node_solve(child.to_vec(), (turn % 2) + 1, evaluate_player);
 
-		if (current_value == UNASSIGNED) {
+		if current_value == UNASSIGNED {
 			current_value = found_value;
 		}
-		else if (turn == 1 && found_value > current_value) {
+		else if turn == 1 && found_value > current_value {
 			current_value = found_value;
 		}
-		else if (turn == 2 && found_value < current_value) {
+		else if turn == 2 && found_value < current_value {
 			current_value = found_value
 		}
 
@@ -227,10 +226,13 @@ fn check_board(board: &Vec<u32>, player: u32) -> bool {
 	return won;
 }
 
+//NOTE: definitely should have built these boards with arrays instead of vectors, would have been
+//      more memory efficient too...
 //check if two boards match
 fn check_match(v1: &Vec<u32>, v2: &Vec<u32>, check_value: u32) -> bool  {	
 	//do preliminary check
-	if (v1.len() != v2.len()) {
+	//i don't think these will ever have a different size though... (why did i use vectors???)	
+	if v1.len() != v2.len() {
 		return false;
 	}
 
@@ -243,67 +245,6 @@ fn check_match(v1: &Vec<u32>, v2: &Vec<u32>, check_value: u32) -> bool  {
 	return true;
 }
 
-/*
-//function used by win loss to calculate win
-fn check_board(board: &Vec<u32>, player: u32) -> i32 {
-	let win_conditions = vec![[player,0,0, player,0,0, player,0,0],
-								[0,player,0, 0,player,0, 0,player,0],
-								[0,0,player, 0,0,player, 0,0,player],
-								[player,player,player, 0,0,0, 0,0,0],
-								[0,0,0, player,player,player, 0,0,0],
-								[0,0,0, 0,0,0, player,player,player],
-								[player,0,0, 0,player,0, 0,0,player],
-								[0,0,player, 0,player,0, player,0,0]];
-	
-	let copy_conditions = vec![[player,0,0, player,0,0, player,0,0],
-								[0,player,0, 0,player,0, 0,player,0],
-								[0,0,player, 0,0,player, 0,0,player],
-								[player,player,player, 0,0,0, 0,0,0],
-								[0,0,0, player,player,player, 0,0,0],
-								[0,0,0, 0,0,0, player,player,player],
-								[player,0,0, 0,player,0, 0,0,player],
-								[0,0,player, 0,player,0, player,0,0]];
-
-	let mut losses = vec![];
-	
-	
-
-	let mut win_index = 0;
-	let mut remove_index = 0;
-	for i in board.iter() {
-		for j in win_conditions.iter() {
-			if i != &player && j[win_index] == player {
-				let mut already_in = false;
-				let mut check = 0;
-				while losses.len() > check {
-					if losses[check] == copy_conditions[remove_index] {
-						already_in = true;
-					}
-					check += 1;
-				}
-				if already_in == false {
-					losses.push(copy_conditions[remove_index]);
-				}
-			}  
-			remove_index += 1;
-		}
-		remove_index = 0;
-		win_index += 1;
-	}
-	let mut result = 0;
-	if win_conditions.len() > losses.len()  {
-		if player == 1 {
-			result = 1;
-		}
-		else {
-			result = -1;
-		}
-	}
-
-
-	result
-}
-*/
 //Function that gets all children of node
 //	Parameters - (board) : game board
 //	   		   - (turn) : current turn
