@@ -21,7 +21,7 @@ fn main() {
         convert_display(&num_board, &mut game_board);
         display_board(&game_board);
 
-        let state = win_loss(&num_board);
+        let state = win_loss(&num_board, 1);
         match state {
             -1 => {
                 println!("WIN");
